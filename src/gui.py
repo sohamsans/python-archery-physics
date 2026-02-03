@@ -128,16 +128,26 @@ class ArcheryWindow(QMainWindow):
         # 3. Plot
         self.figure.clear()
         
-        # Top Plot: Trajectory
-        ax1 = self.figure.add_subplot(211)
+        # Top Left: Trajectory (Auto Scale)
+        ax1 = self.figure.add_subplot(221)
         ax1.plot(res['x'], res['h'], 'b-', linewidth=2)
-        ax1.set_title("Trajectory (Side View)")
+        ax1.set_title("Trajectory (Side View - Auto Scaled)")
         ax1.set_xlabel("Range [m]")
         ax1.set_ylabel("Altitude [m]")
         ax1.grid(True)
         ax1.axhline(0, color='black', linewidth=1) 
         
-        # Bottom Plot: Pitch and Alpha
+        # Top Right: Trajectory (True Scale)
+        ax_true = self.figure.add_subplot(222)
+        ax_true.plot(res['x'], res['h'], 'b-', linewidth=2)
+        ax_true.set_title("Trajectory (True Scale 1:1)")
+        ax_true.set_xlabel("Range [m]")
+        ax_true.set_ylabel("Altitude [m]")
+        ax_true.grid(True)
+        ax_true.axhline(0, color='black', linewidth=1)
+        ax_true.set_aspect('equal', adjustable='datalim')
+        
+        # Bottom: Pitch and Alpha (Spans bottom)
         ax2 = self.figure.add_subplot(212)
         ax2.plot(res['t'], res['theta'], 'r-', label='Pitch (Theta) [deg]')
         ax2.plot(res['t'], res['alpha'], 'g--', label='AoA (Alpha) [deg]')

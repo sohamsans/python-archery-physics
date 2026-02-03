@@ -13,3 +13,8 @@ ENV/
 # IDEs
 .vscode/
 .idea/
+
+# PyInstaller
+dist/
+build/
+*.spec
