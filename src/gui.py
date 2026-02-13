@@ -46,9 +46,9 @@ class ArcheryWindow(QMainWindow):
         # Launch Parameters
         group_launch = QGroupBox("Launch Parameters")
         layout_launch = QFormLayout()
-        self.speed_input = self.add_param(layout_launch, "Velocity (m/s)", 60.0, 10, 200, 
+        self.speed_input = self.add_param(layout_launch, "Velocity (m/s)", 60.0, 1.0, 5000.0, 
                                           tooltip="Initial speed of the arrow (approx 200 fps = 60 m/s).")
-        self.angle_input = self.add_param(layout_launch, "Angle (deg)", 10.0, 0, 90, 
+        self.angle_input = self.add_param(layout_launch, "Angle (deg)", 10.0, -90.0, 90.0, 
                                           tooltip="Launch angle relative to horizontal.")
         group_launch.setLayout(layout_launch)
         control_layout.addWidget(group_launch)
@@ -56,15 +56,15 @@ class ArcheryWindow(QMainWindow):
         # Arrow Geometry
         group_geom = QGroupBox("Arrow Geometry")
         layout_geom = QFormLayout()
-        self.mass_input = self.add_param(layout_geom, "Mass (kg)", 0.024, 0.005, 0.200, step=0.001,
+        self.mass_input = self.add_param(layout_geom, "Mass (kg)", 0.024, 0.001, 10.0, step=0.001,
                                          tooltip="Total mass of the arrow (shaft + point + fletching).")
-        self.len_input = self.add_param(layout_geom, "Length (m)", 0.75, 0.3, 1.2, step=0.01,
+        self.len_input = self.add_param(layout_geom, "Length (m)", 0.75, 0.05, 5.0, step=0.01,
                                         tooltip="Total length of the arrow shaft.")
-        self.diam_input = self.add_param(layout_geom, "Diameter (mm)", 5.5, 2.0, 15.0, step=0.1,
+        self.diam_input = self.add_param(layout_geom, "Diameter (mm)", 5.5, 0.5, 500.0, step=0.1,
                                          tooltip="Shaft diameter (used to calculate air resistance area).")
-        self.cg_input = self.add_param(layout_geom, "CG Position (m from Tip)", 0.45, 0.1, 1.0, step=0.01,
+        self.cg_input = self.add_param(layout_geom, "CG Position (m from Tip)", 0.45, 0.0, 5.0, step=0.01,
                                        tooltip="Center of Gravity. Balance point of the arrow.")
-        self.cp_input = self.add_param(layout_geom, "CP Position (m from Tip)", 0.675, 0.1, 1.2, step=0.01,
+        self.cp_input = self.add_param(layout_geom, "CP Position (m from Tip)", 0.675, 0.0, 5.0, step=0.01,
                                        tooltip="Center of Pressure. Aerodynamic center (where Lift/Drag act).\nMust be BEHIND CG for stability.")
         # Stability Note
         self.stability_label = QLabel("Stability Note: Ensure CP > CG for stable flight.")
@@ -78,7 +78,7 @@ class ArcheryWindow(QMainWindow):
         # Aerodynamics
         group_aero = QGroupBox("Aerodynamics")
         layout_aero = QFormLayout()
-        self.cd_input = self.add_param(layout_aero, "Zero-Lift Drag (Cd0)", 1.2, 0.1, 5.0, step=0.1,
+        self.cd_input = self.add_param(layout_aero, "Zero-Lift Drag (Cd0)", 1.2, 0.01, 20.0, step=0.1,
                                        tooltip="Base drag coefficient. Higher means more air resistance.")
         group_aero.setLayout(layout_aero)
         control_layout.addWidget(group_aero)

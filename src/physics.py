@@ -88,7 +88,7 @@ class PhysicsEngine:
         
         return np.array([vx, vh, ax, ah, omega, alpha_acc])
 
-    def simulate(self, v0, angle_deg, dt=0.005, max_time=10.0):
+    def simulate(self, v0, angle_deg, dt=0.005, max_time=600.0):
         self.reset()
         
         theta0 = np.radians(angle_deg)
